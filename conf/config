@@ -1,0 +1,29 @@
+#!/bin/bash
+
+VERSION=1.1
+
+# OSM DATA SOURCE
+#################
+# OSM_LATEST_FILE_NAME=hamburg-latest.osm.pbf
+# OSM_LATEST_FILE_DOWNLOAD_URL=https://download.geofabrik.de/europe/germany/${OSM_LATEST_FILE_NAME}
+
+# DOCKER CONFIG
+###############
+DOCKER_BUILD_TAG=bare-metal-tools:$VERSION
+DOCKER_BUILD_ARG_INSTALLWORKDIR=/var/install
+DOCKER_NAME_SUFFIX=_v${VERSION}
+DOCKER_NAME=bare-metal-tools
+
+# HOST/DOCKER SHARED VOLUMES
+############################
+
+# SOME SHARED VOLUMES NAMES
+WORKING_DIR_NAME=working_dir
+LOG_DIR_NAME=log
+# HOST_VOLUMES_PATH
+HOST_VOLUMES_BASE_DIR=${HOME}/docker_mounted_volumes/$DOCKER_NAME-docker-volumes # default base directory on your host machine where shared docker volumes must be localized
+HOSTPATH_WORKING_DIR=$HOST_VOLUMES_BASE_DIR/$WORKING_DIR_NAME
+# DOCKER_VOLUMES_PATH
+DOCKER_VOLUMES_BASE_DIR=/docker_mounted_volumes # base directory inside your docker container where shared docker volumes must be localized
+DOCKERPATH_WORKING_DIR=$DOCKER_VOLUMES_BASE_DIR/$WORKING_DIR_NAME
+DOCKERPATH_SOURCE_DIR=$DOCKER_VOLUMES_BASE_DIR/sources
